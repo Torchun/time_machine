@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_items_hists
-      @items_hists = ItemsHist.where({items_id: params[:id]})
+      @items_hists = ItemsHist.where({items_id: params[:id]}).order(id: :desc)
     end
 
     def set_item
