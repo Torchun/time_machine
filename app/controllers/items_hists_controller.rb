@@ -23,14 +23,22 @@ class ItemsHistsController < ApplicationController
   def replay
     @items_hist = ItemsHist.find(params[:id])
 
-    @item = Item.find(@items_hist.items_id)
+    @item = Item.find(@items_hist.items_id) rescue Item.new
+    if @item.id.blank?
+      replay_action = 'create'
+      @item.id = @items_hist.items_id
+    else
+      replay_action = 'update'
+    end
+    
     @item.f1 = @items_hist.f1
     @item.f2 = @items_hist.f2
     @item.f3 = @items_hist.f3
 
+
     respond_to do |format|
       if @item.save
-        @item.archive('update')
+        @item.archive(replay_action)
         format.html { redirect_to @item, notice: "Items hist was successfully created." }
         format.json { render :show, status: :created, location: @items_hist }
       else
