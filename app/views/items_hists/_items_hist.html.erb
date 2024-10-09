@@ -24,7 +24,11 @@
   </td>
 
   <td>
-    <%= items_hist.op_hist %>
+    <%= link_to items_hist.op_hist, items_hist %>
+  </td>
+
+  <td>
+    <%= button_to "<<", items_hist_replay_path(items_hist), method: :post %>
   </td>
 
 </tr>

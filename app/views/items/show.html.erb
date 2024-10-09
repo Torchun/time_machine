@@ -19,7 +19,7 @@
 <h4>history records</h4>
 <table id="items_hists">
 
-  <%= render partial: 'items_hists/items_hist_hdr', locals: {hdrs: %W[ id f1 f2 f3 created_at updated_at op ]} %>
+  <%= render partial: 'items_hists/items_hist_hdr', locals: {hdrs: %W[ id f1 f2 f3 created_at updated_at op revert ]} %>
 
   <% @items_hists.each do |items_hist| %>
     <%= render items_hist %>

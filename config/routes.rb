@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post "items_hists/:id/replay" => "items_hists#replay", as: :items_hist_replay
   resources :items_hists
   resources :items
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

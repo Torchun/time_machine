@@ -20,6 +20,26 @@ class ItemsHistsController < ApplicationController
   end
 
   # POST /items_hists or /items_hists.json
+  def replay
+    @items_hist = ItemsHist.find(params[:id])
+
+    @item = Item.find(@items_hist.items_id)
+    @item.f1 = @items_hist.f1
+    @item.f2 = @items_hist.f2
+    @item.f3 = @items_hist.f3
+
+    respond_to do |format|
+      if @item.save
+        @item.archive('update')
+        format.html { redirect_to @item, notice: "Items hist was successfully created." }
+        format.json { render :show, status: :created, location: @items_hist }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @items_hist.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  # POST /items_hists or /items_hists.json
   def create
     @items_hist = ItemsHist.new(items_hist_params)
 

@@ -6,5 +6,6 @@
   <%= link_to "Edit this items hist", edit_items_hist_path(@items_hist) %> |
   <%= link_to "Back to items hists", items_hists_path %>
 
-  <%= button_to "Destroy this items hist", @items_hist, method: :delete %>
+  <!-- %= button_to "Destroy this items hist", @items_hist, method: :delete %  -->
+  <%= button_to "Revert to", items_hist_replay_path(@items_hist), method: :post %>
 </div>
