@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_09_133213) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_09_145026) do
   create_table "items", force: :cascade do |t|
     t.string "f1"
     t.integer "f2"
@@ -31,6 +31,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_09_133213) do
     t.datetime "updated_at", null: false
     t.string "engine"
     t.integer "items_hist_id"
+    t.string "refid"
     t.index ["items_hist_id"], name: "index_items_hists_on_items_hist_id"
   end
 
