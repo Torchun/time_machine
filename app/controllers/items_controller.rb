@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   @@OP_CODES = {'create'=>'C', 'update'=>'U', 'destroy'=>'D'}
 
   def archive_item
-    @item.archive(action_name)
+    @item.archive(action_name, 'AR')
     #n=ItemsHist.create(items_id: @item.id, f1: @item.f1, f2: @item.f2, f3: @item.f3, items_created_at: @item.created_at, items_updated_at: ((action_name == 'destroy')? DateTime.now : @item.updated_at), op_hist: @@OP_CODES[action_name]).save!
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_09_091443) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_09_131443) do
   create_table "items", force: :cascade do |t|
     t.string "f1"
     t.integer "f2"
@@ -29,5 +29,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_09_091443) do
     t.string "op_hist"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "engine"
   end
 end

@@ -38,7 +38,7 @@ class ItemsHistsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        @item.archive(replay_action)
+        @item.archive(replay_action, 'TM')
         format.html { redirect_to @item, notice: "Items hist was successfully created." }
         format.json { render :show, status: :created, location: @items_hist }
       else

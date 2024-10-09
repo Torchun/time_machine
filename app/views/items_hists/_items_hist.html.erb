@@ -28,6 +28,10 @@
   </td>
 
   <td>
+    <%= items_hist.engine %>
+  </td>
+
+  <td>
     <% if items_hist.op_hist != 'D' %>
       <%= button_to "<<", items_hist_replay_path(items_hist), method: :post %>
     <% else %>
