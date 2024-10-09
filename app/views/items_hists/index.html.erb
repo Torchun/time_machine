@@ -1,16 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Items hists" %>
+<% content_for :title, "Items hists content" %>
 
-<h1>Items hists</h1>
+<h1>Items history records</h1>
 
-<div id="items_hists">
+<table id="items_hists">
+
+  <%= render partial: 'items_hist_hdr', locals: {hdrs: %W[ id f1 f2 f3 created_at updated_at op ]} %>
+
   <% @items_hists.each do |items_hist| %>
     <%= render items_hist %>
-    <p>
-      <%= link_to "Show this items hist", items_hist %>
-    </p>
   <% end %>
-</div>
-
-<%= link_to "New items hist", new_items_hist_path %>
+</table>

@@ -1,5 +1,14 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :set_items_hists, only: %i[ show ]
+
+  after_action :archive_item, only: %i[ create update destroy ]
+  @@OP_CODES = {'create'=>'C', 'update'=>'U', 'destroy'=>'D'}
+
+  def archive_item
+    n=ItemsHist.create(items_id: @item.id, f1: @item.f1, f2: @item.f2, f3: @item.f3, items_created_at: @item.created_at, items_updated_at: ((action_name == 'destroy')? DateTime.now : @item.updated_at), op_hist: @@OP_CODES[action_name]).save!
+  end
+
 
   # GET /items or /items.json
   def index
@@ -59,8 +68,12 @@ class ItemsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_items_hists
+      @items_hists = ItemsHist.where({items_id: params[:id]})
+    end
+
     def set_item
-      @item = Item.find(params[:id])
+      @item = Item.find(params[:id]) rescue Item.new(id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

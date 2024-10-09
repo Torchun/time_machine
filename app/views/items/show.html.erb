@@ -1,10 +1,28 @@
 <p style="color: green"><%= notice %></p>
+<% if @item.new_record? %>
+  <% absence_reason = (@items_hists.empty?)? 'not found':'deleted' %>
+  <h4>item: <%= absence_reason %></h4>
 
-<%= render @item %>
+<% else %>
+  <%= render @item %>
+  <div>
+    <%= link_to "Edit this item", edit_item_path(@item) %> |
+    <%= link_to "Back to items", items_path %>
 
-<div>
-  <%= link_to "Edit this item", edit_item_path(@item) %> |
-  <%= link_to "Back to items", items_path %>
+    <%= button_to "Destroy this item", @item, method: :delete %>
+  </div>
+<% end %>
 
-  <%= button_to "Destroy this item", @item, method: :delete %>
-</div>
+
+<% unless @items_hists.empty? %>
+<hr/>
+<h4>history records</h4>
+<table id="items_hists">
+
+  <%= render partial: 'items_hists/items_hist_hdr', locals: {hdrs: %W[ id f1 f2 f3 created_at updated_at op ]} %>
+
+  <% @items_hists.each do |items_hist| %>
+    <%= render items_hist %>
+  <% end %>
+</table>
+<% end %>
