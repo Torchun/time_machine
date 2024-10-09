@@ -1,0 +1,52 @@
+<%= form_with(model: items_hist) do |form| %>
+  <% if items_hist.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(items_hist.errors.count, "error") %> prohibited this items_hist from being saved:</h2>
+
+      <ul>
+        <% items_hist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :items_id, style: "display: block" %>
+    <%= form.number_field :items_id %>
+  </div>
+
+  <div>
+    <%= form.label :f1, style: "display: block" %>
+    <%= form.text_field :f1 %>
+  </div>
+
+  <div>
+    <%= form.label :f2, style: "display: block" %>
+    <%= form.number_field :f2 %>
+  </div>
+
+  <div>
+    <%= form.label :f3, style: "display: block" %>
+    <%= form.date_field :f3 %>
+  </div>
+
+  <div>
+    <%= form.label :items_created_at, style: "display: block" %>
+    <%= form.datetime_field :items_created_at %>
+  </div>
+
+  <div>
+    <%= form.label :items_updated_at, style: "display: block" %>
+    <%= form.datetime_field :items_updated_at %>
+  </div>
+
+  <div>
+    <%= form.label :op_hist, style: "display: block" %>
+    <%= form.text_field :op_hist %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

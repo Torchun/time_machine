@@ -1,0 +1,12 @@
+<% content_for :title, "Editing items hist" %>
+
+<h1>Editing items hist</h1>
+
+<%= render "form", items_hist: @items_hist %>
+
+<br>
+
+<div>
+  <%= link_to "Show this items hist", @items_hist %> |
+  <%= link_to "Back to items hists", items_hists_path %>
+</div>

@@ -10,11 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_09_090944) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_09_091443) do
   create_table "items", force: :cascade do |t|
     t.string "f1"
     t.integer "f2"
     t.date "f3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items_hists", force: :cascade do |t|
+    t.integer "items_id"
+    t.string "f1"
+    t.integer "f2"
+    t.date "f3"
+    t.datetime "items_created_at"
+    t.datetime "items_updated_at"
+    t.string "op_hist"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

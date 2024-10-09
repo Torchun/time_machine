@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @items_hist %>
+
+<div>
+  <%= link_to "Edit this items hist", edit_items_hist_path(@items_hist) %> |
+  <%= link_to "Back to items hists", items_hists_path %>
+
+  <%= button_to "Destroy this items hist", @items_hist, method: :delete %>
+</div>
