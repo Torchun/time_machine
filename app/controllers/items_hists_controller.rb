@@ -38,15 +38,7 @@ class ItemsHistsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        prev_head_rec = ItemsBranch.where(refid: '*', item_id: @items_hist.items_id)
-        unless prev_head_rec.blank?
-          prev_head_rec.delete_all
-        end
-        br = @items_hist.items_branches.new
-        br.refid = '*'
-        br.item_id = @items_hist.items_id
-        br.save!
-        # shift HEAD at Branches ===^^^
+        @items_hist.create_or_move_head
         format.html { redirect_to @item, notice: "Items hist was successfully created." }
         format.json { render :show, status: :created, location: @items_hist }
       else
@@ -56,34 +48,6 @@ class ItemsHistsController < ApplicationController
     end
   end
 
-  # POST /items_hists or /items_hists.json
-  def replay
-    @items_hist = ItemsHist.find(params[:id])
-
-    @item = Item.find(@items_hist.items_id) rescue Item.new
-    if @item.id.blank?
-      replay_action = 'create'
-      @item.id = @items_hist.items_id
-    else
-      replay_action = 'update'
-    end
-
-    @item.f1 = @items_hist.f1
-    @item.f2 = @items_hist.f2
-    @item.f3 = @items_hist.f3
-
-
-    respond_to do |format|
-      if @item.save
-        @item.archive(replay_action, 'TM', @items_hist.id)
-        format.html { redirect_to @item, notice: "Items hist was successfully created." }
-        format.json { render :show, status: :created, location: @items_hist }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @items_hist.errors, status: :unprocessable_entity }
-      end
-    end
-  end
   # POST /items_hists or /items_hists.json
   def create
     @items_hist = ItemsHist.new(items_hist_params)

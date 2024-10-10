@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :items_branches
-  post "items_hists/:id/replay" => "items_hists#replay", as: :items_hist_replay
   post "items_hists/:id/checkout" => "items_hists#checkout", as: :items_hist_checkout
   resources :items_hists
   resources :items

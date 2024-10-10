@@ -13,14 +13,7 @@ class Item < ApplicationRecord
       end
       n = ItemsHist.create(items_id: self.id, f1: self.f1, f2: self.f2, f3: self.f3, items_created_at: self.created_at, items_updated_at: ((action_name == 'destroy')? DateTime.now : self.updated_at), op_hist: @@OP_CODES[action_name], engine: engine, items_hist_id: items_hist_id, refid: '/' )
       n.save!
-      prev_head_rec = ItemsBranch.where(refid: '*', item_id: n.items_id )
-      unless prev_head_rec.blank?
-        prev_head_rec.delete_all
-      end
-      br = n.items_branches.new
-      br.refid = '*'
-      br.item_id = n.items_id
-      br.save!
+      n.create_or_move_head
     end
   end
 end
