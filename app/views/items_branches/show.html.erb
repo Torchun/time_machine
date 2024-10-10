@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @items_branch %>
+
+<div>
+  <%= link_to "Edit this items branch", edit_items_branch_path(@items_branch) %> |
+  <%= link_to "Back to items branches", items_branches_path %>
+
+  <%= button_to "Destroy this items branch", @items_branch, method: :delete %>
+</div>

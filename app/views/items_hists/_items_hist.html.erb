@@ -37,12 +37,15 @@
     <%= items_hist.items_hist_id %>
   </td>
   <td>
-    <%= items_hist.refid %>
+    <% branches = items_hist.items_branches %>
+    <% branches.each do |br| %>
+    <%= br.refid %> &nbsp;
+    <% end %>
   </td>
 
   <td>
     <% if items_hist.op_hist != 'D' %>
-      <%= button_to "<<", items_hist_replay_path(items_hist), method: :post %>
+      <%= button_to "<<", items_hist_checkout_path(items_hist), method: :post %>
     <% else %>
       &nbsp;
     <% end %>

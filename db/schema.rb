@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_09_145026) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_10_072936) do
   create_table "items", force: :cascade do |t|
     t.string "f1"
     t.integer "f2"
     t.date "f3"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "items_branches", force: :cascade do |t|
+    t.integer "items_hist_id", null: false
+    t.integer "item_id", null: false
+    t.string "refid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_items_branches_on_item_id"
+    t.index ["items_hist_id"], name: "index_items_branches_on_items_hist_id"
   end
 
   create_table "items_hists", force: :cascade do |t|
@@ -35,5 +45,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_09_145026) do
     t.index ["items_hist_id"], name: "index_items_hists_on_items_hist_id"
   end
 
+  add_foreign_key "items_branches", "items_hists"
   add_foreign_key "items_hists", "items_hists"
 end

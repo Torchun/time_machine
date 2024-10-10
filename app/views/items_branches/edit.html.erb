@@ -1,0 +1,12 @@
+<% content_for :title, "Editing items branch" %>
+
+<h1>Editing items branch</h1>
+
+<%= render "form", items_branch: @items_branch %>
+
+<br>
+
+<div>
+  <%= link_to "Show this items branch", @items_branch %> |
+  <%= link_to "Back to items branches", items_branches_path %>
+</div>

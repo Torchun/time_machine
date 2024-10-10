@@ -71,6 +71,7 @@ class ItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_items_hists
       @items_hists = ItemsHist.where({items_id: params[:id]}).order(id: :desc)
+      @items_hists_branches = ItemsBranch.where({item_id: params[:id]}).order(id: :desc)
     end
 
     def set_item

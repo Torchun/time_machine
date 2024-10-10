@@ -6,15 +6,21 @@ class Item < ApplicationRecord
 
 
     if engine=='AR'
-      parent_hist = ItemsHist.where('refid=? AND items_id=?', '*',self.id).first
-      if parent_hist.blank?
-        nil
-      else
-        parent_hist.refid = nil
-        parent_hist.save!
-        items_hist_id = parent_hist.id
+      head_hist = ItemsBranch.where('refid=? AND item_id=?', '*',self.id).take
+      unless head_hist.blank?
+        items_hist_id = head_hist.items_hist_id
+        head_hist.delete
       end
-      n=ItemsHist.create(items_id: self.id, f1: self.f1, f2: self.f2, f3: self.f3, items_created_at: self.created_at, items_updated_at: ((action_name == 'destroy')? DateTime.now : self.updated_at), op_hist: @@OP_CODES[action_name], engine: engine, items_hist_id: items_hist_id, refid: '*' ).save!
+      n = ItemsHist.create(items_id: self.id, f1: self.f1, f2: self.f2, f3: self.f3, items_created_at: self.created_at, items_updated_at: ((action_name == 'destroy')? DateTime.now : self.updated_at), op_hist: @@OP_CODES[action_name], engine: engine, items_hist_id: items_hist_id, refid: '/' )
+      n.save!
+      prev_head_rec = ItemsBranch.where(refid: '*', item_id: n.items_id )
+      unless prev_head_rec.blank?
+        prev_head_rec.delete_all
+      end
+      br = n.items_branches.new
+      br.refid = '*'
+      br.item_id = n.items_id
+      br.save!
     end
   end
 end

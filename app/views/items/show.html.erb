@@ -14,15 +14,30 @@
 <% end %>
 
 
-<% unless @items_hists.empty? %>
+<% unless @items_hists.blank? %>
 <hr/>
 <h4>history records</h4>
-<table id="items_hists">
+<table class="hists">
 
   <%= render partial: 'items_hists/items_hist_hdr', locals: {hdrs: ItemsHistsHelper::ITEM_LISTS_HDR} %>
 
   <% @items_hists.each do |items_hist| %>
     <%= render items_hist %>
+  <% end %>
+</table>
+<% end %>
+
+
+
+<% unless @items_hists_branches.blank? %>
+<hr/>
+<h4>history branches</h4>
+<table class="hists">
+
+  <%= render partial: 'items_branches/items_branch_hdr', locals: {hdrs: ItemsBranchesHelper::ITEM_LISTS_HDR} %>
+
+  <% @items_hists_branches.each do |items_branch| %>
+    <%= render items_branch %>
   <% end %>
 </table>
 <% end %>

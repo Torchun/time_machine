@@ -1,6 +1,6 @@
-table#items_hists tr td{
+table.hists tr td{
   margin-right: 5px; padding-right: 3px; margin-left: 5px; padding-left: 3px; border-bottom: 1px solid; border-left: 1px solid #bbb;
 }
-table#items_hists tr th{
+table.hists tr th{
   border-bottom: 3px solid #ddd; border-left: 1px solid #bbb; background-color: #f6f6f6
 }
