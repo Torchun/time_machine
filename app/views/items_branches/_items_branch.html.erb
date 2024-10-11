@@ -8,5 +8,15 @@
   <td>
     <%= items_branch.refid %>
   </td>
+  <td>
+    <%= items_branch.reftype %>
+  </td>
+  <td>
+    <% if items_branch.refid != '*' %>
+      <%= button_to "X", items_branch, method: :delete %>
+    <% else %>
+      &nbsp;
+    <% end %>
+  </td>
 
 </tr>

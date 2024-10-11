@@ -19,6 +19,27 @@ class ItemsHistsController < ApplicationController
   def edit
   end
 
+  # POST
+  def tag
+    @items_hist = ItemsHist.find(params[:id])
+    @item = Item.find(@items_hist.items_id) rescue Item.new
+
+    br = ItemsBranch.new
+    br.items_hist_id = @items_hist.id
+    br.item_id       = @items_hist.items_id
+    br.refid         = params[:refid] || '??'
+    br.reftype       = "tag"
+
+    respond_to do |format|
+      if br.save
+        format.html { redirect_to @item, notice: "Items hist was successfully created." }
+        format.json { render :show, status: :created, location: @items_hist }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @items_hist.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # POST /items_hists or /items_hists.json
   def checkout
     @items_hist = ItemsHist.find(params[:id])

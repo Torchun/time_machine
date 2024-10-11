@@ -49,10 +49,11 @@ class ItemsBranchesController < ApplicationController
 
   # DELETE /items_branches/1 or /items_branches/1.json
   def destroy
+    item_id = @items_branch.item_id
     @items_branch.destroy!
 
     respond_to do |format|
-      format.html { redirect_to items_branches_path, status: :see_other, notice: "Items branch was successfully destroyed." }
+      format.html { redirect_to item_path(item_id), status: :see_other, notice: "Items branch was successfully destroyed." }
       format.json { head :no_content }
     end
   end

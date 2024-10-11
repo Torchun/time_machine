@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :items_branches
   post "items_hists/:id/checkout" => "items_hists#checkout", as: :items_hist_checkout
+  post "items_hists/:id/tag" => "items_hists#tag", as: :items_hist_tag
   resources :items_hists
   resources :items
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

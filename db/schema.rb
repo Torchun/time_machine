@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_10_072936) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_11_094501) do
   create_table "items", force: :cascade do |t|
     t.string "f1"
     t.integer "f2"
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_10_072936) do
     t.string "refid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reftype"
     t.index ["item_id"], name: "index_items_branches_on_item_id"
     t.index ["items_hist_id"], name: "index_items_branches_on_items_hist_id"
   end

@@ -50,5 +50,16 @@
       &nbsp;
     <% end %>
   </td>
+  <td>
+    <% if items_hist.op_hist != 'D' %>
+      <%= form_with url: items_hist_tag_path(items_hist), method: :post do |form| %>
+      <%= form.submit "<-t", name: nil %>
+      <%= form.text_field :refid, value: params[:refid] %>
+      <% end %>
+      <!--    ### %= button_to "<T", items_hist_tag_path(items_hist), method: :post %  -->
+    <% else %>
+      &nbsp;
+    <% end %>
+  </td>
 
 </tr>
